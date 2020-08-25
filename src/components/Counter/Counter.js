@@ -22,10 +22,10 @@ class Counter extends React.Component {
     }
 
     increment = (by) => {
-        this.setState({
-            counter: this.state.counter + this.by
-        });
-        this.incrementMethod(this.by);
+        this.setState(
+          () =>  {
+             return {counter: this.state.counter + by}
+            });
     }
 }
 
@@ -53,7 +53,7 @@ class CounterButtons extends React.Component {
         this.setState({
             counter: this.state.counter + this.props.by
         });
-        this.incrementMethod(this.props.by);
+        this.props.incrementMethod(this.props.by);
     }
 }
 
