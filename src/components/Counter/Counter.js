@@ -1,19 +1,38 @@
 import React from 'react'
 import './Counter.css'
 
-class CounterButtons extends React.Component {
+class Counter extends React.Component {
+
+    constructor() {
+        super();
+        this.state = {
+            counter: 0
+        }
+
+       // this.increment = this.increment.bind(this);
+       // this.decrement = this.decrement.bind(this);
+    }
+
     render(){
         return (
             <div className = "Counter">
-                <Counter by = {1}/><br></br>
-                <Counter by = {5}/><br></br>
-                <Counter by = {10}/>
+                <CounterButtons by = {1} incrementMethod = {this.increment}/><br></br>
+                <CounterButtons by = {5} incrementMethod = {this.increment}/><br></br>
+                <CounterButtons by = {10} incrementMethod = {this.increment}/><br></br>
+                <span>{this.state.counter}</span>
             </div>
         )
     }
+
+    increment = (by) => {
+        this.setState({
+            counter: this.state.counter + this.by
+        });
+        this.incrementMethod(this.by);
+    }
 }
 
-class Counter extends React.Component {
+class CounterButtons extends React.Component {
 
     constructor() {
         super();
@@ -29,7 +48,6 @@ class Counter extends React.Component {
         return (
             <div className = "Counter">
               <button onClick = {this.increment}>+{this.props.by}</button>
-              <span>{this.state.counter}</span>
             </div>
         );
     }
@@ -38,13 +56,8 @@ class Counter extends React.Component {
         this.setState({
             counter: this.state.counter + this.props.by
         });
-    }
-
-    decrement = () => {
-        this.setState({
-            counter: this.state.counter - this.props.by
-        });
+        this.incrementMethod(this.props.by);
     }
 }
 
-export default CounterButtons;
+export default Counter;
