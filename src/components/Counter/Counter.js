@@ -48,32 +48,15 @@ class CounterButtons extends React.Component {
 
     constructor() {
         super();
-        this.state = {
-            counter: 0
-        }
     }
 
     render() {
         return (
             <div className = "Counter">
-                <button onClick = {this.increment}>+{this.props.by}</button>
-                <button onClick = {this.decrement}>-{this.props.by}</button>
+                <button onClick = {() => this.props.incrementMethod(this.props.by)}>+{this.props.by}</button>
+                <button onClick = {() => this.props.decrementMethod(this.props.by)}>-{this.props.by}</button>
             </div>
         );
-    }
-
-    increment = () => {
-        this.setState({
-            counter: this.state.counter + this.props.by
-        });
-        this.props.incrementMethod(this.props.by);
-    }
-
-    decrement = () => {
-        this.setState({
-            counter: this.state.counter - this.props.by
-        });
-        this.props.decrementMethod(this.props.by)
     }
 
     reset = () => {
